@@ -3,7 +3,7 @@ from models.user import User
 from config.db import users_collection
 from schemas.user import userEntity,usersEntity
 from bson import ObjectId
-user = APIRouter()
+user = APIRouter(prefix="/users",tags=['Users'])
 
 @user.get('/')
 async def find_all_users():
