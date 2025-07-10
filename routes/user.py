@@ -3,6 +3,7 @@ from models.user import User
 from config.db import users_collection
 from schemas.user import userEntity,usersEntity
 from bson import ObjectId
+from hashing import hash_password
 user = APIRouter(prefix="/users",tags=['Users'])
 
 @user.get('/')
@@ -18,6 +19,7 @@ async def find_one_user(id):
 
 @user.post('/')
 async def create_users(user: User):
+    user.password = hash_password(user.password)
     users_collection.insert_one(dict(user))
     return usersEntity(users_collection.find())
 
