@@ -1,3 +1,4 @@
 __pycache__
 fastapimongo
 .DS_Store
+.env
